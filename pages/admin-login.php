@@ -62,8 +62,6 @@
                 <br>
             </form>
 
-            <a href="#sign-up-modal" class="sign-in" id="user-sign-up" data-bs-target="#sign-up-modal" data-bs-toggle="modal">Not registered? Create an account </a>
-
             <div class="modal fade" id="sign-up-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered" role="document">
 
