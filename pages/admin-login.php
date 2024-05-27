@@ -51,11 +51,11 @@
             <h3>Admin Login</h3>
             <p>Welcome back!</p>
 
-            <form action="" method="post">
+            <form action="../actions/login-admin.php" method="post">
                 <div class="sign-in">
-                    <input type="email" class="form-control" id="email" placeholder="Email" name="admin_email">
+                    <input type="email" class="form-control" id="email" placeholder="Email" name="email">
                     <br>
-                    <input type="password" class="form-control" id="password" placeholder="Password" name="admin_password">
+                    <input type="password" class="form-control" id="password" placeholder="Password" name="password">
                 </div>
                 <br>
                 <button type="submit" class="cstm-bton btn btn-dark" id="sign-up"> Sign in </button>

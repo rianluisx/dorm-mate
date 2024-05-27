@@ -60,14 +60,14 @@ h3{
 
 }
 
-input[type=password], input[type=email] {
+input[type=password], input[type=email], input[type=text] {
 
     width: 30%;
     margin: 0 auto;
     
 }
   
-input[type=email]:focus, input[type=password]:focus {
+input[type=email]:focus, input[type=password]:focus, input[type=text]:focus {
     background-color: #ddd;
     outline: none;
 }

@@ -50,14 +50,15 @@
         <div class="login-content">
               <h3>Student Login</h3>
               <p>Welcome back!</p>
-              
-              <form action="../actions/sign-in.php" method="post">
+
+              <form action="../actions/login-student.php" method="post">
                   <div class="sign-in">
-                      <input type="email" class="form-control" id="email" placeholder="Email" name="student_email">
+                      <input type="email" class="form-control" id="email" placeholder="Email" name="email" required="">
                       <br>
-                      <input type="password" class="form-control" id="password" placeholder="Password" name="student_password">
+                      <input type="password" class="form-control" id="password" placeholder="Password" name="password" required="">
                   </div>
                   <br>
+                  <input type="hidden" name="user_role" value="student">
                   <button type="submit" class="cstm-bton btn btn-dark" id="sign-up"> Sign in </button>
                   <br>
               </form>
@@ -66,23 +67,28 @@
 
               <div class="modal fade" id="sign-up-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                   <div class="modal-dialog modal-dialog-centered" role="document">
-                      <div class="modal-content">
+
+                    <div class="modal-content">
+
                           <div class="modal-header">
                               <h5 class="modal-title" id="sign-up-modal">Sign-up</h5>
                           </div>
+
                           <div class="modal-body">
-                              <form action="../actions/sign-up.php" method="post" class="sign-up"></form>
+                              <form action="../actions/sign-up.php" method="post" class="sign-up">
                                   <div class="input-field">
-                                    <input type="email" class="input" id="email" placeholder="Email" name="student_email">
+                                    <input type="text" class="input" id="name" placeholder="Name" name="name" required="">
                                   </div>
                                   <div class="input-field">
-                                    <input type="password" class="input" id="password" placeholder="Password" name="student_password"> 
-                                    <input type="hidden" >
+                                    <input type="email" class="input" id="email" placeholder="Email" name="email" required="">
+                                  </div>
+                                  <div class="input-field">
+                                    <input type="password" class="input" id="password" placeholder="Password" name="password" required="" required pattern=".{8,}" title="Password must be at least 8 characters long"> 
                                   </div>
                                   <button type="submit" class="btn btn-primary" >Sign up</button>
-                              <form>
+                              </form>
                           </div>
-                      </div>
+                    </div>
                   </div>
               </div>
         </div>
