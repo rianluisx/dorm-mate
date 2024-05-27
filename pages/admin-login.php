@@ -62,27 +62,6 @@
                 <br>
             </form>
 
-            <div class="modal fade" id="sign-up-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-                <div class="modal-dialog modal-dialog-centered" role="document">
-
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLongTitle">Sign-up</h5>
-                    </div>
-                    <div class="modal-body">
-                        <form action="" method="post"></form>
-                            <input type="email" class="form-control" id="email" placeholder="Email" name="admin_email">
-                            <br>
-                            <input type="password" class="form-control" id="password" placeholder="Password" name="admin_password">  
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                            <button type="submit" class="btn btn-primary" onclick="">Sign up</button>
-                        <form>
-                    </div>
-                </div>
-                </div>
-            </div>
-
-
       </div> 
 
 
