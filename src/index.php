@@ -40,18 +40,13 @@
               <div class="cntcts">
                 <a class="cstm-class btn btn-outline-dark my-2 my-sm-0" href="#">Contacts</a>
               </div>
-            
             </div>
-            
           </div>
       </nav>
 
       <div class="body-content">
           <h3>Dorm Filing Like Never Before</h3>
           <h4>Power in the palm of your hands.</h4>
-
-
-          
       </div>
 
 

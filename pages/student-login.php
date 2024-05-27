@@ -46,45 +46,47 @@
           </div>
       </nav>
 
-      <div class="login-content">
+      <div class="center-form">
+        <div class="login-content">
+              <h3>Student Login</h3>
+              <p>Welcome back!</p>
+              
+              <form action="../actions/sign-in.php" method="post">
+                  <div class="sign-in">
+                      <input type="email" class="form-control" id="email" placeholder="Email" name="student_email">
+                      <br>
+                      <input type="password" class="form-control" id="password" placeholder="Password" name="student_password">
+                  </div>
+                  <br>
+                  <button type="submit" class="cstm-bton btn btn-dark" id="sign-up"> Sign in </button>
+                  <br>
+              </form>
 
-            <h3>Student Login</h3>
-            <p>Welcome back!</p>
+              <a href="#sign-up-modal" class="sign-in" id="user-sign-up" data-bs-target="#sign-up-modal" data-bs-toggle="modal">Not registered? Create an account </a>
 
-            <form action="" method="post">
-                <div class="sign-in">
-                    <input type="email" class="form-control" id="email" placeholder="Email" name="student_email">
-                    <br>
-                    <input type="password" class="form-control" id="password" placeholder="Password" name="student_password">
-                </div>
-                <br>
-                <button type="submit" class="cstm-bton btn btn-dark" id="sign-up"> Sign in </button>
-                <br>
-            </form>
-
-            <a href="#sign-up-modal" class="sign-in" id="user-sign-up" data-bs-target="#sign-up-modal" data-bs-toggle="modal">Not registered? Create an account </a>
-
-            <div class="modal fade" id="sign-up-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-                <div class="modal-dialog modal-dialog-centered" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLongTitle">Sign-up</h5>
-                        </div>
-                        <div class="modal-body">
-                            <form action="" method="post"></form>
-                                <input type="email" class="form-control" id="email" placeholder="Email" name="admin_email">
-                                <input type="password" class="form-control" id="password" placeholder="Password" name="admin_password"> 
-                                <br>
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                <button type="submit" class="btn btn-primary" onclick="goBack();">Sign up</button>
-                            <form>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
+              <div class="modal fade" id="sign-up-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                  <div class="modal-dialog modal-dialog-centered" role="document">
+                      <div class="modal-content">
+                          <div class="modal-header">
+                              <h5 class="modal-title" id="sign-up-modal">Sign-up</h5>
+                          </div>
+                          <div class="modal-body">
+                              <form action="../actions/sign-up.php" method="post" class="sign-up"></form>
+                                  <div class="input-field">
+                                    <input type="email" class="input" id="email" placeholder="Email" name="student_email">
+                                  </div>
+                                  <div class="input-field">
+                                    <input type="password" class="input" id="password" placeholder="Password" name="student_password"> 
+                                    <input type="hidden" >
+                                  </div>
+                                  <button type="submit" class="btn btn-primary" >Sign up</button>
+                              <form>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+        </div>
       </div> 
-
 
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>

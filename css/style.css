@@ -39,6 +39,7 @@ img{
     text-align: center;
     position: relative;
     top: 15px;
+    padding: 90px 0;
 }
 
 h3{
@@ -88,3 +89,38 @@ input[type=email]:focus, input[type=password]:focus {
     top: 10px;
     text-decoration: none;
 }
+
+.modal-body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 100%;
+}
+
+.input-field {
+    position: relative;
+    width: 800px;
+    margin-bottom: 5px;
+    
+}
+
+.input {
+    margin-top: 15px;
+    width: 100%;
+    outline: none;
+    border-radius: 8px;
+    height: 45px;
+    border: 1.5px solid #ecedec;
+    background: transparent;
+    padding-left: 10px;
+}
+
+.modal-header{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+
