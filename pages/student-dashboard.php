@@ -160,5 +160,48 @@
         });
     </script>
 
+<script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const permitTypeSelect = document.getElementById('permitType');
+            const expectedDateInput = document.getElementById('expected-date');
+
+            permitTypeSelect.addEventListener('change', function () {
+                const selectedPermitType = permitTypeSelect.value;
+                if (selectedPermitType === 'overnight-permit') {
+                    setNextDayExpectedDate();
+                } else if (selectedPermitType === 'late-night-permit') {
+                    setSameDayExpectedDate();
+                } else {
+                    expectedDateInput.removeAttribute('min');
+                    expectedDateInput.removeAttribute('max');
+                    expectedDateInput.value = '';
+                }
+            });
+
+            function setNextDayExpectedDate() {
+                const today = new Date();
+                const tomorrow = new Date(today);
+                tomorrow.setDate(today.getDate() + 1);
+                const formattedDate = tomorrow.toISOString().substr(0, 10);
+                expectedDateInput.setAttribute('min', formattedDate);
+                expectedDateInput.setAttribute('max', formattedDate);
+                expectedDateInput.value = formattedDate;
+            }
+
+            function setSameDayExpectedDate() {
+                const today = new Date();
+                const formattedDate = today.toISOString().substr(0, 10);
+                expectedDateInput.setAttribute('min', formattedDate);
+                expectedDateInput.setAttribute('max', formattedDate);
+                expectedDateInput.value = formattedDate;
+            }
+
+            if (permitTypeSelect.value === 'late-night-permit') {
+                setSameDayExpectedDate();
+            } 
+        });
+        
+    </script>
+
 </body>
 </html>
