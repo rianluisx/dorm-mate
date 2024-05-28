@@ -47,6 +47,7 @@
             </form>
         </div>
 
+        <br>
         <h2>Manage Permits</h2>
         <?php if ($pendingPermitsResult->num_rows > 0): ?>
             <?php while ($permit = $pendingPermitsResult->fetch_assoc()): ?>
@@ -88,15 +89,40 @@
             <p>No pending permits to manage.</p>
         <?php endif; ?>
 
-        <h2>Activity Log</h2>
+    <br>
+    <h2>Activity Log</h2>
         <?php if ($activityLogResult->num_rows > 0): ?>
             <ul>
                 <?php while ($activity = $activityLogResult->fetch_assoc()): ?>
-                    <li>
-                        <?php echo $activity['date_filed']; ?> - 
-                        <?php echo $activity['student_name']; ?> filed  <?php echo $activity['permit_type']; ?>.
-                        Status: <?php echo $activity['permit_status']; ?>
-                    </li>
+                    <div class="permit-card" data-bs-toggle="modal" data-bs-target="#activity-details-modal-<?php echo $activity['permit_id']; ?>">
+                        <h3><?php echo $activity['permit_type']; ?></h3>
+                        <span class="badge <?php echo $activity['permit_status'] == 'approved' ? 'bg-success' : ($activity['permit_status'] == 'rejected' ? 'bg-danger' : 'bg-warning'); ?>"><?php echo $activity['permit_status']; ?></span>
+                        <p><strong>Filed by:</strong> <?php echo $activity['student_name']; ?> 
+                        <p><strong>Date Filed:</strong> <?php echo $activity['date_filed']; ?></p>
+                    </div>
+
+                    <div class="modal fade" id="activity-details-modal-<?php echo $activity['permit_id']; ?>" tabindex="-1" role="dialog" aria-labelledby="activityDetailsModalTitle" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="activityDetailsModalTitle">Activity Details</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <p><strong>Permit Type:</strong> <?php echo $activity['permit_type']; ?></p>
+                                    <p><strong>Status:</strong> <?php echo $activity['permit_status']; ?></p>
+                                    <p><strong>Date Filed:</strong> <?php echo $activity['date_filed']; ?></p>
+                                    <p><strong>Room Number:</strong> <?php echo $activity['room_number']; ?></p>
+                                    <p><strong>Time Out:</strong> <?php echo $activity['time_out']; ?></p>
+                                    <p><strong>Expected Date of Return:</strong> <?php echo $activity['expected_date']; ?></p>
+                                    <p><strong>Destination:</strong> <?php echo $activity['destination']; ?></p>
+                                    <p><strong>Purpose:</strong> <?php echo $activity['purpose']; ?></p>
+                                    <p><strong>In Care Of:</strong> <?php echo $activity['in_care_of']; ?></p>
+                                    <p><strong>Emergency Contact:</strong> <?php echo $activity['emergency_contact']; ?></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 <?php endwhile; ?>
             </ul>
         <?php else: ?>

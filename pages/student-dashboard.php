@@ -100,7 +100,6 @@
 
         <br><br>
         <h2>Your Permits</h2>
-        <br>
         <?php if ($permitsResult->num_rows > 0): ?>
             <?php while ($permit = $permitsResult->fetch_assoc()): ?>
                 <div class="permit-card" data-bs-toggle="modal" data-bs-target="#permit-details-modal" data-permit='<?php echo json_encode($permit); ?>'>

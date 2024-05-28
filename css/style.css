@@ -14,12 +14,35 @@ html {
 }
 
 img{
-    padding-left: 90px;
+    padding-left: 80px;
 }
 
 .navbar-collapse{
     position: relative;
     left:390px
+}
+
+.navbar-brand {
+    position: relative;
+    left: 100; 
+    text-align: left; 
+}
+
+.navbar-brand img {
+    display: inline-block; 
+    vertical-align: middle; 
+}
+
+@media (max-width: 800px){
+    .navbar-brand {
+        position: relative;
+        left: 10%; 
+        transform: translateX(-50%); 
+    }
+
+    .navbar-brand img {
+        margin-right: 5px; 
+    }
 }
 
 .btn-outline-dark{
@@ -28,6 +51,12 @@ img{
 
 .cntcts{
     padding-left: 430px;
+}
+
+@media (max-width: 500px) {
+    .cntcts {
+        display: none; 
+    }
 }
 
 .body-content{
