@@ -4,10 +4,10 @@
 
     if (!isset($_SESSION['student_email'])) {
         header("Location: student-login.php");
-        exit(); // Stop further execution
+        exit(); 
     }
 
-    $permitID = $_GET['permit_id'];
+    $permitID = $_POST['permit_id'];
     $getPermit = "SELECT * FROM permit WHERE permit_id = '$permitID'";
     $permitResult = $conn->query($getPermit);
 

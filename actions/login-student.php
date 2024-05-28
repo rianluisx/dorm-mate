@@ -19,11 +19,11 @@
                 header("refresh: 0.5;url=../pages/student-dashboard.php");
             } else {
                 echo "<script> alert('Invalid Passoword!'); </script>";
-                header("refresh: 0.5;url=../pages/student-log-in.php");
+                header("refresh: 0.5;url=../pages/student-login.php");
             }
         } else {
             echo "<script> alert ('Student does not exist!') </script>";
-            header("refresh: 0.5;url=../pages/student-log-in.php");
+            header("refresh: 0.5;url=../pages/student-login.php");
         }
 
     }

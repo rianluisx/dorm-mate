@@ -1,0 +1,134 @@
+*{
+   box-sizing: border-box;
+}
+
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+.container {
+    max-width: 1300px;
+    margin: 0 auto;
+    padding: 20px;
+}
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.header h3{
+    position: relative;
+    right: 495px;
+}
+
+.logout-btn {
+    background-color: #f44336;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+.permit-form {
+    margin-bottom: 20px;
+}
+.permit-card {
+    border: 1px solid #dddddd;
+    border-radius: 5px;
+    padding: 10px;
+    margin-bottom: 10px;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.1);
+}
+
+.permit-card:hover {
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+}
+
+.permit-card h3 {
+    margin-top: 0;
+}
+
+.permit-card p {
+    margin: 0;
+}
+.actions-btn {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 12px;
+    cursor: pointer;
+    border-radius: 3px;
+}
+
+.file-permit {
+    text-align: center;
+}
+
+.file-permit p{
+    font-size: 40px;
+    font-weight: 100px;
+}
+
+.modal-header{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+input[type=password], input[type=email], input[type=text], input[type=date], select {
+
+    width: 25%;
+    
+    
+}
+  
+input[type=email]:focus, input[type=password]:focus, input[type=text]:focus, input[type=date]:focus, select:focus {
+    background-color: white;
+    outline: none;
+}
+
+
+
+.input-field {
+    position: relative;
+    width: 800px;
+    margin-bottom: 5px;
+    
+}
+
+select{
+    outline: none;
+    border-radius: 8px;
+    height: 45px;
+    border: 1.5px solid #ecedec;
+    background: transparent;
+}
+
+.input{
+    margin-top: 15px;
+    width: 100%;
+    outline: none;
+    border-radius: 8px;
+    height: 45px;
+    border: 1.5px solid #ecedec;
+    background: transparent;
+    padding-left: 10px;
+}
+
+.modal-body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}

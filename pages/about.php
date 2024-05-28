@@ -25,7 +25,7 @@
 
               <ul class="navbar-nav">
                 <li class="nav-item">
-                  <a class="nav-link" aria-current="page" href="index.php">Home</a>
+                  <a class="nav-link" aria-current="page" href="../src/index.php">Home</a>
                 </li>
                 <li class="nav-item">
                   <a class="nav-link" href="../pages/student-login.php">Student</a>
@@ -34,7 +34,7 @@
                   <a class="nav-link" href="../pages/admin-login.php">Admin</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="../pages/about.php">About</a>
+                  <a class="nav-link" href="#about">About</a>
                 </li>
               </ul>
 
@@ -45,37 +45,24 @@
           </div>
       </nav>
 
-      <div class="body-content">
-          <h3>Dorm Filing Like Never Before</h3>
-          <h4>Power in the palm of your hands.</h4>
+      <div class="body-content-about">
+        <div class="container-about">
+          <h3>About</h3>
+          <br>
+          <p>Welcome to DormMate, where convenience meets efficiency in the realm of dormitory permit management. DormMate is a cutting-edge automated logbook system designed to revolutionize the way dormitory residents and administrators handle permit requests.
 
-          
-            <div class="cards-grid-container">
-              <div class="cards-container">
-                  <div class="cards">
-                    <img src="../images/Feat 1.png" alt="" class="feat-1">
-                    <div class="card-body">
-                      <p class="card-text">File Permits Anywhere.</p>
-                    </div>
-                  </div>
-                  <div class="cards">
-                    <img src="../images/Feat 2.png" alt="" class="feat-2">
-                    <div class="card-body">
-                      <p class="card-text">Get notified.</p>
-                    </div>
-                  </div>
-                  <div class="cards">
-                    <img src="../images/Feat 3.png" alt="" class="feat-3">
-                    <div class="card-body">
-                      <p class="card-text">Manage Permits Anywhere.</p>
-                    </div>
-                  </div>
-              </div>
-            </div>
-        
+            At DormMate, we understand the challenges faced by dormitory dwellers when it comes to securing permits for various activities. Whether it's overnight guests, late-night study sessions, or planned absences, the process can often be time-consuming and cumbersome. That's why we've developed DormMate to provide a streamlined solution that puts control back in your hands.
+
+            For dormitory residents, DormMate offers a simple and intuitive platform to submit permit requests with just a few clicks. Our user-friendly interface eliminates the need for complex paperwork and long waiting times, allowing you to focus on what matters most – your stay in the dormitory.
+
+            But DormMate isn't just for residents – it's also a powerful tool for dormitory administrators. With DormMate, administrators can easily manage and track permit requests in real-time, ensuring compliance with dormitory policies and maintaining a safe and secure living environment for all residents.
+
+            At DormMate, we're committed to making dormitory life easier and more convenient for everyone involved. Join us in embracing the future of dormitory permit management with DormMate – where simplicity meets efficiency.
+            </p>
+        </div>
       </div>
 
-      <footer class="text-center text-lg-start" id="footer">
+      <footer class="text-center text-lg-start" id="footer-about">
         <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.05); color: white;">
           © 2024 Copyright: DormMate
         </div>    

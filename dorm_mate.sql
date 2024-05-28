@@ -20,6 +20,13 @@ CREATE TABLE permit (
     student_id INT(6) NOT NULL,
     permit_type ENUM('late-night-permit', 'overnight-permit', 'weekend-permit') NOT NULL,
     permit_status ENUM('pending', 'approved', 'rejected') DEFAULT 'pending',
+    room_number VARCHAR(10) NOT NULL,
+    time_out VARCHAR(50) NOT NULL,
+    expected_date DATE NOT NULL,
+    destination VARCHAR(255) NOT NULL,
+    purpose VARCHAR(255) NOT NULL,
+    in_care_of VARCHAR(255) NOT NULL,
+    emergency_contact VARCHAR(255) NOT NULL,
     date_filed TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     PRIMARY KEY(permit_id),
     FOREIGN KEY (student_id) REFERENCES student(student_id) ON DELETE CASCADE

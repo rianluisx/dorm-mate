@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DormMate</title>
     <link rel="icon" type="icon" href="../images/🦆 icon _bookmark book_.png">
+    <link rel="stylesheet" href="../css/media-screen-queries.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="stylesheet" href="../css/style.css">
 
@@ -33,7 +34,7 @@
                   <a class="nav-link" href="admin-login.php">Admin</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="../src/index.php">About</a>
+                  <a class="nav-link" href="../pages/about.php">About</a>
                 </li>
               </ul>
 
@@ -63,6 +64,12 @@
             </form>
 
       </div> 
+
+      <footer class="text-center text-lg-start" id="footer">
+        <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.05); color: white;">
+          © 2024 Copyright: DormMate
+        </div>    
+      </footer>
 
 
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>

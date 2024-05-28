@@ -33,7 +33,7 @@
                   <a class="nav-link" href="admin-login.php">Admin</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="../src/index.php">About</a>
+                  <a class="nav-link" href="../pages/about.php">About</a>
                 </li>
               </ul>
 
@@ -93,6 +93,12 @@
               </div>
         </div>
       </div> 
+      
+      <footer class="text-center text-lg-start" id="footer">
+        <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.05); color: white;">
+          © 2024 Copyright: DormMate
+        </div>    
+      </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
