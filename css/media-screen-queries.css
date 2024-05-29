@@ -1,14 +1,72 @@
-/* Extra small devices (phones, 600px and down) */
-@media only screen and (max-width: 600px) {}
+@media only screen and (max-width: 1000px) {
+    input[type=email], input[type=password]{
+        width: 50%;
+    }
 
-/* Small devices (portrait tablets and large phones, 600px and up) */
-@media only screen and (min-width: 600px) {}
 
-/* Medium devices (landscape tablets, 768px and up) */
-@media only screen and (min-width: 768px) {}
 
-/* Large devices (laptops/desktops, 992px and up) */
-@media only screen and (min-width: 992px) {}
+}
 
-/* Extra large devices (large laptops and desktops, 1200px and up) */
-@media only screen and (min-width: 1200px) {}
+@media only screen and (max-width: 1200px) {
+    input[type=email], input[type=password]{
+        width: 45%;
+    }
+
+
+}
+
+@media only screen and (max-width: 800px) {
+    input[type=email], input[type=password]{
+        width: 75%;
+    }
+
+    .btn-dark{
+
+        padding-left: 150px;
+        padding-right: 150px;
+        border-radius: 10px;
+    }
+
+    .header{
+        margin-left: 35px;
+        margin-right: 35px;
+
+    }
+
+    .permit-cont{
+        text-align: center;
+    }
+
+    .act-log{
+        text-align: center;
+    }
+
+
+}
+
+@media (max-width: 800px){
+    .navbar-brand {
+        position: relative;
+        left: 10%; 
+        transform: translateX(-50%); 
+    }
+
+    .navbar-brand img {
+        margin-right: 5px; 
+    }
+
+}
+
+@media (max-width: 500px) {
+    .cntcts {
+        display: none; 
+    }
+}
+
+@media only screen and (max-width: 1400px) {
+    .header h3 {
+        display: none;
+    }
+
+    
+}

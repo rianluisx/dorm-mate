@@ -41,7 +41,9 @@
 
         <div class="header">
             <img src="../images/🦆 icon _bookmark book_.png" alt="">
-            <h3>Hello <?php echo $studentName; ?>!</h3>
+            <div class="user-name">
+                <h3>Hello <?php echo $studentName; ?>!</h3>
+            </div>
             <form action="../actions/logout-student.php" method="post">
                 <button type="submit" class="btn btn-outline-dark">Log-out</button>
             </form>
@@ -50,9 +52,11 @@
         <div class="file-permit">
             <p>Need a permit?</p>
                 
-            <button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#sign-up-modal">
+            <button type="button" id="file-permit-button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#sign-up-modal">
                 File a permit
             </button>
+
+            <p id="permit-timer" class="mt-2" style="font-size: 20px;"></p>
 
             <div class="modal fade" id="sign-up-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered" role="document">
@@ -102,7 +106,7 @@
         <h2>Your Permits</h2>
         <?php if ($permitsResult->num_rows > 0): ?>
             <?php while ($permit = $permitsResult->fetch_assoc()): ?>
-                <div class="permit-card" data-bs-toggle="modal" data-bs-target="#permit-details-modal" data-permit='<?php echo json_encode($permit); ?>'>
+                <div class="permit-card clickable" data-bs-toggle="modal" data-bs-target="#permit-details-modal" data-permit='<?php echo json_encode($permit); ?>'>
                     <h3><?php echo $permit['permit_type']; ?></h3>
                     <!-- Displaying status using Bootstrap badge -->
                     <span class="badge <?php echo $permit['permit_status'] == 'approved' ? 'bg-success' : ($permit['permit_status'] == 'rejected' ? 'bg-danger' : 'bg-warning'); ?>"><?php echo $permit['permit_status']; ?></span>
@@ -138,70 +142,8 @@
 
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
-    <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            var permitCards = document.querySelectorAll('.permit-card');
-            permitCards.forEach(function (card) {
-                card.addEventListener('click', function () {
-                    var permit = JSON.parse(this.getAttribute('data-permit'));
-                    document.getElementById('modal-permit-type').textContent = permit.permit_type;
-                    document.getElementById('modal-permit-status').textContent = permit.permit_status;
-                    document.getElementById('modal-permit-status').className = 'badge bg-' + (permit.permit_status == 'pending' ? 'warning' : (permit.permit_status == 'approved' ? 'success' : 'danger'));
-                    document.getElementById('modal-date-filed').textContent = permit.date_filed;
-                    document.getElementById('modal-room-number').textContent = permit.room_number;
-                    document.getElementById('modal-time-out').textContent = permit.time_out;
-                    document.getElementById('modal-expected-date').textContent = permit.expected_date;
-                    document.getElementById('modal-destination').textContent = permit.destination;
-                    document.getElementById('modal-purpose').textContent = permit.purpose;
-                    document.getElementById('modal-in-care-of').textContent = permit.in_care_of;
-                    document.getElementById('modal-emergency-contact').textContent = permit.emergency_contact;
-                });
-            });
-        });
-    </script>
+    <script src="../src/index.js"></script>
 
-<script>
-        document.addEventListener('DOMContentLoaded', function () {
-            const permitTypeSelect = document.getElementById('permitType');
-            const expectedDateInput = document.getElementById('expected-date');
-
-            permitTypeSelect.addEventListener('change', function () {
-                const selectedPermitType = permitTypeSelect.value;
-                if (selectedPermitType === 'overnight-permit') {
-                    setNextDayExpectedDate();
-                } else if (selectedPermitType === 'late-night-permit') {
-                    setSameDayExpectedDate();
-                } else {
-                    expectedDateInput.removeAttribute('min');
-                    expectedDateInput.removeAttribute('max');
-                    expectedDateInput.value = '';
-                }
-            });
-
-            function setNextDayExpectedDate() {
-                const today = new Date();
-                const tomorrow = new Date(today);
-                tomorrow.setDate(today.getDate() + 1);
-                const formattedDate = tomorrow.toISOString().substr(0, 10);
-                expectedDateInput.setAttribute('min', formattedDate);
-                expectedDateInput.setAttribute('max', formattedDate);
-                expectedDateInput.value = formattedDate;
-            }
-
-            function setSameDayExpectedDate() {
-                const today = new Date();
-                const formattedDate = today.toISOString().substr(0, 10);
-                expectedDateInput.setAttribute('min', formattedDate);
-                expectedDateInput.setAttribute('max', formattedDate);
-                expectedDateInput.value = formattedDate;
-            }
-
-            if (permitTypeSelect.value === 'late-night-permit') {
-                setSameDayExpectedDate();
-            } 
-        });
-        
-    </script>
 
 </body>
 </html>
