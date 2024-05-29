@@ -33,17 +33,7 @@ img{
     vertical-align: middle; 
 }
 
-@media (max-width: 800px){
-    .navbar-brand {
-        position: relative;
-        left: 10%; 
-        transform: translateX(-50%); 
-    }
 
-    .navbar-brand img {
-        margin-right: 5px; 
-    }
-}
 
 .btn-outline-dark{
     border-radius: 0;
@@ -53,11 +43,6 @@ img{
     padding-left: 430px;
 }
 
-@media (max-width: 500px) {
-    .cntcts {
-        display: none; 
-    }
-}
 
 .body-content{
     text-align: center;
