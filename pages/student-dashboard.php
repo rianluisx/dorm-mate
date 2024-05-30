@@ -18,7 +18,7 @@
         $studentID = $userInfo['student_id'];
     }
 
-    $getPermits = "SELECT * FROM permit WHERE student_id = '$studentID'";
+    $getPermits = "SELECT * FROM permit WHERE student_id = '$studentID' ORDER BY date_filed DESC";
     $permitsResult = $conn->query($getPermits);
 
 ?>
@@ -44,9 +44,27 @@
             <div class="user-name">
                 <h3>Hello <?php echo $studentName; ?>!</h3>
             </div>
-            <form action="../actions/logout-student.php" method="post">
-                <button type="submit" class="btn btn-outline-dark">Log-out</button>
-            </form>
+            <button type="button" class="btn btn-outline-dark" data-bs-toggle="modal" data-bs-target="#logoutConfirmationModal">Log-out</button>
+        </div>
+
+        <div class="modal fade" id="logoutConfirmationModal" tabindex="-1" aria-labelledby="logoutConfirmationModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="logoutConfirmationModalLabel">Confirm Logout</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        Are you sure you want to log out?
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                        <form id="logoutForm" action="../actions/logout-student.php" method="post">
+                            <button type="submit" class="btn btn-primary">Logout</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
         </div>
 
         <div class="file-permit">
@@ -104,18 +122,26 @@
 
         <br><br>
         <h2>Your Permits</h2>
-        <?php if ($permitsResult->num_rows > 0): ?>
-            <?php while ($permit = $permitsResult->fetch_assoc()): ?>
-                <div class="permit-card clickable" data-bs-toggle="modal" data-bs-target="#permit-details-modal" data-permit='<?php echo json_encode($permit); ?>'>
-                    <h3><?php echo $permit['permit_type']; ?></h3>
-                    <!-- Displaying status using Bootstrap badge -->
-                    <span class="badge <?php echo $permit['permit_status'] == 'approved' ? 'bg-success' : ($permit['permit_status'] == 'rejected' ? 'bg-danger' : 'bg-warning'); ?>"><?php echo $permit['permit_status']; ?></span>
-                    <p><strong>Date Filed:</strong> <?php echo $permit['date_filed']; ?></p>
-                </div>
-            <?php endwhile; ?>
-        <?php else: ?>
-            <p>You have not filed any permits yet.</p>
-        <?php endif; ?>
+        <div id="permitContainer">
+            <?php $permitCount = 0; ?>
+            <?php if ($permitsResult->num_rows > 0): ?>
+                <?php while ($permit = $permitsResult->fetch_assoc()): ?>
+                    <?php $permitCount++; ?>
+                    <div class="permit-card clickable <?php echo $permitCount > 4 ? 'd-none' : ''; ?>" data-bs-toggle="modal" data-bs-target="#permit-details-modal" data-permit='<?php echo json_encode($permit); ?>'>
+                        <h3><?php echo $permit['permit_type']; ?></h3>
+                        <span class="badge <?php echo $permit['permit_status'] == 'approved' ? 'bg-success' : ($permit['permit_status'] == 'rejected' ? 'bg-danger' : 'bg-warning'); ?>"><?php echo $permit['permit_status']; ?></span>
+                        <p><strong>Date Filed:</strong> <?php echo $permit['date_filed']; ?></p>
+                    </div>
+                <?php endwhile; ?>
+                <?php if ($permitCount > 4): ?>
+                    <div class="text-center mt-3">
+                        <button id="seeMoreButton" class="btn btn-dark" style="text-align:center;">See More</button>
+                    </div>
+                <?php endif; ?>
+            <?php else: ?>
+                <p>You have not filed any permits yet.</p>
+            <?php endif; ?>
+        </div>
     </div>
 
     <div class="modal fade" id="permit-details-modal" tabindex="-1" role="dialog" aria-labelledby="permitDetailsModalTitle" aria-hidden="true">

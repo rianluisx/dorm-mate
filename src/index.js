@@ -64,9 +64,10 @@ function checkPermitFilingTime() {
     const timerDisplay = document.getElementById('permit-timer');
     const currentTime = new Date();
     const currentHour = currentTime.getHours();
-
+    
     const startHour = 6;  
-    const endHour = 18;   
+    const endHour = 18;  
+    
 
     if (currentHour >= startHour && currentHour < endHour) {
         permitButton.classList.remove('disabled');
@@ -78,28 +79,87 @@ function checkPermitFilingTime() {
         
         let nextFilingTime;
         if (currentHour >= endHour) {
-            
-            nextFilingTime = new Date(currentTime.getFullYear(), currentTime.getMonth(), currentTime.getDate() + 1, 6, 0, 0);
+            nextFilingTime = new Date(currentTime.getFullYear(), currentTime.getMonth(), currentTime.getDate() + 1, startHour, 0, 0);
         } else {
-            
-            nextFilingTime = new Date(currentTime.getFullYear(), currentTime.getMonth(), currentTime.getDate(), 6, 0, 0);
+            nextFilingTime = new Date(currentTime.getFullYear(), currentTime.getMonth(), currentTime.getDate(), startHour, 0, 0);
         }
 
-
         const timeDifference = nextFilingTime - currentTime;
-        
 
         const hours = Math.floor(timeDifference / (1000 * 60 * 60));
         const minutes = Math.floor((timeDifference % (1000 * 60 * 60)) / (1000 * 60));
         const seconds = Math.floor((timeDifference % (1000 * 60)) / 1000);
 
-
         timerDisplay.textContent = `You can file a permit in the next ${hours}h ${minutes}m ${seconds}s`;
     }
 }
-
 
 window.onload = () => {
     checkPermitFilingTime();
     setInterval(checkPermitFilingTime, 1000);
 };
+
+document.addEventListener("DOMContentLoaded", function() {
+    const urlParams = new URLSearchParams(window.location.search);
+    const signupError = urlParams.get('signup_error');
+
+    if (signupError === 'password_mismatch') {
+        var myModal = new bootstrap.Modal(document.getElementById('sign-up-modal'), {});
+        myModal.show();
+    }
+});
+
+document.addEventListener('DOMContentLoaded', function() {
+    const seeMoreButton = document.getElementById('seeMoreButton');
+    if (seeMoreButton) {
+        seeMoreButton.addEventListener('click', function() {
+            const hiddenPermits = document.querySelectorAll('.permit-card.d-none, .permit-card:not(.d-none)');
+            hiddenPermits.forEach(function(permit, index) {
+                if (index > 3) {
+                    permit.classList.toggle('d-none');
+                }
+            });
+            if (seeMoreButton.textContent === 'See More') {
+                seeMoreButton.textContent = 'See Less';
+            } else {
+                seeMoreButton.textContent = 'See More';
+            }
+        });
+    }
+});
+
+document.addEventListener('DOMContentLoaded', function() {
+    const seeMoreButton = document.getElementById('seeMoreManagePermitsButton');
+    if (seeMoreButton) {
+        seeMoreButton.addEventListener('click', function() {
+            const hiddenPermits = document.querySelectorAll('#managePermitsContainer .permit-card.d-none, #managePermitsContainer .permit-card:not(.d-none)');
+            hiddenPermits.forEach(function(permit, index) {
+                if (index > 3) {
+                    permit.classList.toggle('d-none');
+                }
+            });
+            if (seeMoreButton.textContent === 'See More') {
+                seeMoreButton.textContent = 'See Less';
+            } else {
+                seeMoreButton.textContent = 'See More';
+            }
+        });
+    }
+
+    const seeMoreActivityButton = document.getElementById('seeMoreActivityLogButton');
+    if (seeMoreActivityButton) {
+        seeMoreActivityButton.addEventListener('click', function() {
+            const hiddenActivities = document.querySelectorAll('#activityLogContainer .permit-card.d-none, #activityLogContainer .permit-card:not(.d-none)');
+            hiddenActivities.forEach(function(activity, index) {
+                if (index > 3) {
+                    activity.classList.toggle('d-none');
+                }
+            });
+            if (seeMoreActivityButton.textContent === 'See More') {
+                seeMoreActivityButton.textContent = 'See Less';
+            } else {
+                seeMoreActivityButton.textContent = 'See More';
+            }
+        });
+    }
+});

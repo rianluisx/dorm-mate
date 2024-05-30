@@ -15,7 +15,6 @@
     if ($retrievedAdmin->num_rows == 1){
         $admin = $retrievedAdmin->fetch_assoc();
         $adminName = $admin['admin_name'];
-
     }
 
     $getPendingPermits = "SELECT permit.*, student.student_name FROM permit JOIN student ON permit.student_id = student.student_id WHERE permit.permit_status = 'pending' ORDER BY permit.date_filed DESC";
@@ -44,31 +43,51 @@
             <div class="admin">
                 <h3>Hello <?php echo $adminName; ?>!</h3>
             </div>
-            <form action="../actions/logout-admin.php" method="post">
-                <button type="submit" class="btn btn-outline-dark">Log-out</button>
-            </form>
+            <button type="button" class="btn btn-outline-dark" data-bs-toggle="modal" data-bs-target="#logoutConfirmationModal">Log-out</button>
+        </div>
+
+        <div class="modal fade" id="logoutConfirmationModal" tabindex="-1" aria-labelledby="logoutConfirmationModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="logoutConfirmationModalLabel">Confirm Logout</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        Are you sure you want to log out?
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                        <form id="logoutForm" action="../actions/logout-admin.php" method="post">
+                            <button type="submit" class="btn btn-primary">Logout</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
         </div>
 
         <br>
         <div class="permit-cont">
             <h2>Manage Permits</h2>
+            <div id="managePermitsContainer">
+                <?php $permitCount = 0; ?>
                 <?php if ($pendingPermitsResult->num_rows > 0): ?>
                     <?php while ($permit = $pendingPermitsResult->fetch_assoc()): ?>
-                        <div class="permit-card clickable" data-bs-toggle="modal" data-bs-target="#permit-details-modal-<?php echo $permit['permit_id']; ?>">
+                        <?php $permitCount++; ?>
+                        <div class="permit-card clickable <?php echo $permitCount > 4 ? 'd-none' : ''; ?>" data-bs-toggle="modal" data-bs-target="#permit-details-modal-<?php echo $permit['permit_id']; ?>">
                             <p><strong>Student Name:</strong> <?php echo $permit['student_name']; ?></p>
                             <p><strong>Permit Type:</strong> <?php echo $permit['permit_type']; ?></p>
                             <p><strong>Date Filed:</strong> <?php echo $permit['date_filed']; ?></p>
                         </div>
-            
 
-                    <div class="modal fade" id="permit-details-modal-<?php echo $permit['permit_id']; ?>" tabindex="-1" role="dialog" aria-labelledby="permitDetailsModalTitle" aria-hidden="true">
-                        <div class="modal-dialog" role="document">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-title" id="permitDetailsModalTitle">Permit Details</h5>
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                </div>
-                                <div class="modal-body">
+                        <div class="modal fade" id="permit-details-modal-<?php echo $permit['permit_id']; ?>" tabindex="-1" role="dialog" aria-labelledby="permitDetailsModalTitle" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="permitDetailsModalTitle">Permit Details</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
                                         <p><strong>Permit Type:</strong> <?php echo $permit['permit_type']; ?> <span id="modal-permit-type"></span></p>
                                         <p><strong>Status:</strong> <?php echo $permit['permit_status']; ?> <span id="modal-permit-status"></span></p>
                                         <p><strong>Date Filed:</strong> <?php echo $permit['permit_type']; ?> <span id="modal-date-filed"></span></p>
@@ -79,64 +98,79 @@
                                         <p><strong>Purpose:</strong><?php echo $permit['purpose']; ?> <span id="modal-purpose"></span></p>
                                         <p><strong>In Care Of:</strong> <?php echo $permit['in_care_of']; ?><span id="modal-in-care-of"></span></p>
                                         <p><strong>Emergency Contact:</strong> <?php echo $permit['emergency_contact']; ?> <span id="modal-emergency-contact"></span></p>
-                                    <form action="../actions/manage-permit.php" method="post">
-                                        <input type="hidden" name="permit_id" value="<?php echo $permit['permit_id']; ?>">
-                                        <button type="submit" name="permit_status" value="approved" class="btn btn-success">Approve</button>
-                                        <button type="submit" name="permit_status" value="rejected" class="btn btn-danger">Reject</button>
-                                    </form>
+                                        <form action="../actions/manage-permit.php" method="post">
+                                            <input type="hidden" name="permit_id" value="<?php echo $permit['permit_id']; ?>">
+                                            <button type="submit" name="permit_status" value="approved" class="btn btn-success">Approve</button>
+                                            <button type="submit" name="permit_status" value="rejected" class="btn btn-danger">Reject</button>
+                                        </form>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                <?php endwhile; ?>
-            <?php else: ?>
-                <p>No pending permits to manage.</p>
-            <?php endif; ?>
+                    <?php endwhile; ?>
+                    <?php if ($permitCount > 4): ?>
+                        <div class="text-center mt-3">
+                            <button id="seeMoreManagePermitsButton" class="btn btn-dark" style="text-align:center;">See More</button>
+                        </div>
+                    <?php endif; ?>
+                <?php else: ?>
+                    <p>No pending permits to manage.</p>
+                <?php endif; ?>
+            </div>
         </div>
 
-    <br>
-    <h2 class="act-log">Activity Log</h2>
-        <?php if ($activityLogResult->num_rows > 0): ?>
-            <ul>
-                <?php while ($activity = $activityLogResult->fetch_assoc()): ?>
-                    <div class="permit-card clickable" data-bs-toggle="modal" data-bs-target="#activity-details-modal-<?php echo $activity['permit_id']; ?>">
-                        <h3><?php echo $activity['permit_type']; ?></h3>
-                        <span class="badge <?php echo $activity['permit_status'] == 'approved' ? 'bg-success' : ($activity['permit_status'] == 'rejected' ? 'bg-danger' : 'bg-warning'); ?>"><?php echo $activity['permit_status']; ?></span>
-                        <p><strong>Filed by:</strong> <?php echo $activity['student_name']; ?> 
-                        <p><strong>Date Filed:</strong> <?php echo $activity['date_filed']; ?></p>
-                    </div>
+        <br>
+        <h2 class="act-log">Activity Log</h2>
+        <div id="activityLogContainer">
+            <?php $activityCount = 0; ?>
+            <?php if ($activityLogResult->num_rows > 0): ?>
+                <ul>
+                    <?php while ($activity = $activityLogResult->fetch_assoc()): ?>
+                        <?php $activityCount++; ?>
+                        <div class="permit-card clickable <?php echo $activityCount > 4 ? 'd-none' : ''; ?>" data-bs-toggle="modal" data-bs-target="#activity-details-modal-<?php echo $activity['permit_id']; ?>">
+                            <h3><?php echo $activity['permit_type']; ?></h3>
+                            <span class="badge <?php echo $activity['permit_status'] == 'approved' ? 'bg-success' : ($activity['permit_status'] == 'rejected' ? 'bg-danger' : 'bg-warning'); ?>"><?php echo $activity['permit_status']; ?></span>
+                            <p><strong>Filed by:</strong> <?php echo $activity['student_name']; ?></p>
+                            <p><strong>Date Filed:</strong> <?php echo $activity['date_filed']; ?></p>
+                        </div>
 
-                    <div class="modal fade" id="activity-details-modal-<?php echo $activity['permit_id']; ?>" tabindex="-1" role="dialog" aria-labelledby="activityDetailsModalTitle" aria-hidden="true">
-                        <div class="modal-dialog" role="document">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-title" id="activityDetailsModalTitle">Activity Details</h5>
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                </div>
-                                <div class="modal-body">
-                                    <p><strong>Permit Type:</strong> <?php echo $activity['permit_type']; ?></p>
-                                    <p><strong>Status:</strong> <?php echo $activity['permit_status']; ?></p>
-                                    <p><strong>Date Filed:</strong> <?php echo $activity['date_filed']; ?></p>
-                                    <p><strong>Room Number:</strong> <?php echo $activity['room_number']; ?></p>
-                                    <p><strong>Time Out:</strong> <?php echo $activity['time_out']; ?></p>
-                                    <p><strong>Expected Date of Return:</strong> <?php echo $activity['expected_date']; ?></p>
-                                    <p><strong>Destination:</strong> <?php echo $activity['destination']; ?></p>
-                                    <p><strong>Purpose:</strong> <?php echo $activity['purpose']; ?></p>
-                                    <p><strong>In Care Of:</strong> <?php echo $activity['in_care_of']; ?></p>
-                                    <p><strong>Emergency Contact:</strong> <?php echo $activity['emergency_contact']; ?></p>
+                        <div class="modal fade" id="activity-details-modal-<?php echo $activity['permit_id']; ?>" tabindex="-1" role="dialog" aria-labelledby="activityDetailsModalTitle" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="activityDetailsModalTitle">Activity Details</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <p><strong>Permit Type:</strong> <?php echo $activity['permit_type']; ?></p>
+                                        <p><strong>Status:</strong> <?php echo $activity['permit_status']; ?></p>
+                                        <p><strong>Date Filed:</strong> <?php echo $activity['date_filed']; ?></p>
+                                        <p><strong>Room Number:</strong> <?php echo $activity['room_number']; ?></p>
+                                        <p><strong>Time Out:</strong> <?php echo $activity['time_out']; ?></p>
+                                        <p><strong>Expected Date of Return:</strong> <?php echo $activity['expected_date']; ?></p>
+                                        <p><strong>Destination:</strong> <?php echo $activity['destination']; ?></p>
+                                        <p><strong>Purpose:</strong> <?php echo $activity['purpose']; ?></p>
+                                        <p><strong>In Care Of:</strong> <?php echo $activity['in_care_of']; ?></p>
+                                        <p><strong>Emergency Contact:</strong> <?php echo $activity['emergency_contact']; ?></p>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                <?php endwhile; ?>
-            </ul>
-        <?php else: ?>
-            <p>No recent activities.</p>
-        <?php endif; ?>
+                    <?php endwhile; ?>
+                    <?php if ($activityCount > 4): ?>
+                        <div class="text-center mt-3">
+                            <button id="seeMoreActivityLogButton" class="btn btn-dark" style="text-align:center;">See More</button>
+                        </div>
+                    <?php endif; ?>
+                </ul>
+            <?php else: ?>
+                <p>No recent activities.</p>
+            <?php endif; ?>
+        </div>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
-
+    <script src="../src/index.js">
 </body>
 </html>
