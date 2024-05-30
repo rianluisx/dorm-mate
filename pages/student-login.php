@@ -86,6 +86,9 @@
                                   <div class="input-field">
                                     <input type="password" class="input" id="password" placeholder="Password" name="password" required="" required pattern=".{8,}" title="Password must be at least 8 characters long"> 
                                   </div>
+                                  <div class="input-field">
+                                    <input type="password" class="input" id="password" placeholder="Confirm password" name="confirmed_password" required="" required pattern=".{8,}" title="Password must be at least 8 characters long"> 
+                                  </div>
                                   <button type="submit" class="btn btn-primary" >Sign up</button>
                               </form>
                           </div>
@@ -101,6 +104,7 @@
         </div>    
       </footer>
 
+    <script src="../src/index.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
 
